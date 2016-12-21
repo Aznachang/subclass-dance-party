@@ -1,6 +1,6 @@
 $(document).ready(function() {
   window.dancers = [];
-  console.log(window);
+  window.marioSelecter = [];
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
      * buttons on dancefloor.html. You should only need to make one small change to it.
@@ -27,14 +27,33 @@ $(document).ready(function() {
       Math.random() * 1000
     );
 
-   // dancer.push(window.dancers);
+    window.marioSelecter.push(dancer);
+    window.dancers.push(dancerMakerFunctionName);
+    // console.log(window.dancers);
 
     $('body').append(dancer.$node);
   });
 
+  for (var i = 0; i < window.dancers.length; i++) {
+    $(window.dancers[i]).on('click', function(event) {
+      $(this).animate({marginLeft: '-=50px'});
+    });
+  }
+
   $('.lineUpButton').on('click', function(event) { 
-    // for (var i = 0; i < window.dancers.length; i++) {
-    $('span').animate({top: '840px'});
-    // }
+    $('span').animate({top: '840px', marginLeft: '-=10px'});
+  });
+
+  $('.couplesDanceButton').on('click', function(event) {
+    window.marioSelecter.sort(function(a, b) {
+      return a.left - b.left;
+    });
+
+    for (var i = 0; i < window.dancers.length; i++) {
+      if (window.dancers[i] === 'makeMarioDancer' && i % 2 === 1) {
+        console.log(window.marioSelecter);
+        window.marioSelecter[i].$node.addClass('flip');
+      }
+    }
   });
 });
