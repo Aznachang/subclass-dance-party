@@ -27,7 +27,14 @@ $(document).ready(function() {
       Math.random() * 1000
     );
 
+   // dancer.push(window.dancers);
+
     $('body').append(dancer.$node);
   });
-});
 
+  $('.lineUpButton').on('click', function(event) { 
+    // for (var i = 0; i < window.dancers.length; i++) {
+    $('span').animate({top: '840px'});
+    // }
+  });
+});
