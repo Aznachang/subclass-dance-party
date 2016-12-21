@@ -34,14 +34,22 @@ $(document).ready(function() {
     $('body').append(dancer.$node);
   });
 
-  for (var i = 0; i < window.dancers.length; i++) {
-    $(window.dancers[i]).on('click', function(event) {
-      $(this).animate({marginLeft: '-=50px'});
-    });
-  }
+  var moveLeft = function() {
+    $('span').animate({left: '-=100px'}, 1000, moveRight);
+  };
+
+  var moveRight = function() {
+    $('span').animate({left: '+=100px'}, 1000, moveLeft);
+
+  };
+
+  $(document).on('click', 'span', function() {
+    moveLeft();
+
+  }); 
 
   $('.lineUpButton').on('click', function(event) { 
-    $('span').animate({top: '840px', marginLeft: '-=10px'});
+    $('span').animate({top: '840px', marginLeft: '10px'});
   });
 
   $('.couplesDanceButton').on('click', function(event) {
@@ -49,10 +57,16 @@ $(document).ready(function() {
       return a.left - b.left;
     });
 
+    var j = 0;
     for (var i = 0; i < window.dancers.length; i++) {
-      if (window.dancers[i] === 'makeMarioDancer' && i % 2 === 1) {
-        console.log(window.marioSelecter);
+      if (i % 2 === 0) {
         window.marioSelecter[i].$node.addClass('flip');
+      }
+
+      if (i % 2 === 1) {
+        window.marioSelecter[i].$node.animate({left: j += 80});
+      } else {
+        window.marioSelecter[i].$node.animate({left: j += 40});
       }
     }
   });

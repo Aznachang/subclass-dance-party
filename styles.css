@@ -37,26 +37,37 @@ body, a:link, a:visited, a:active{
 
 .makeLuigiDancer{
   position: fixed;
-  bottom: 0;
 }
 
 .makeMarioDancer{
   position: fixed;
-  bottom: 0;
 }
 
 .makePeachDancer{
   position: fixed;
-  bottom: 0;
 }
 
 img {
-  /*position: absolute;*/
   height: 70px;
   width: 70px;
 }
+img:hover {
+  height: 140px;
+  width: 140px;
+  transition: 1s ease-in-out;
+  transform: rotate(360deg) scale(1.4);
+}
 
 .flip {
+  position: fixed;
   transform: scaleX(-1);
   filter: FlipH;
+}
+
+.leftDancer {
+  position: fixed;
+}
+
+.rightDancer {
+  position: fixed;
 }
